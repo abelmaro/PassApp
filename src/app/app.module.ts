@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 //Rutas
 import { APP_ROUTING } from './app.routes'
@@ -28,6 +30,7 @@ import { HeroeSearchComponent } from './components/heroe-search/heroe-search.com
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     APP_ROUTING
   ],
   providers: [

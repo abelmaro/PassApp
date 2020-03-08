@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import { Router, Data} from '@angular/router';
 import { HeroesService } from '../../services/heroes.service';
+import { ApiService } from '../../services/api.service';
+
 
 @Component({
   selector: 'app-heroes',
@@ -9,13 +11,20 @@ import { HeroesService } from '../../services/heroes.service';
 export class HeroesComponent implements OnInit {
 
   heroes: any[] = [];
-
+  pokemones: any[] = [];
+  apiResult: any = [];
+  items: any = [];
+  date: Date = new Date();
   constructor(private _heroesService: HeroesService,
-              private router:Router) { }
+              private router: Router,
+              private _apiService: ApiService) { }
 
   ngOnInit(): void {
     this.heroes = this._heroesService.getHeroes();
-    console.log(this.heroes);
+    this.pokemones = this._heroesService.getpokemones();
+    this.apiResult = this._apiService.getNews();
+    this.apiResult.forEach(element => console.log(this.items.push(element.articles)));
+    console.log(this.items);
   }
 
   verHeroe(idx:Number) {
