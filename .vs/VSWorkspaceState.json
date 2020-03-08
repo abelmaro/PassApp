@@ -4,11 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\components",
-    "\\src\\app\\components\\home",
-    "\\src\\app\\components\\shared",
-    "\\src\\app\\components\\shared\\navbar",
+    "\\src\\app\\components\\heroe",
+    "\\src\\app\\components\\heroes",
+    "\\src\\app\\services",
+    "\\src\\assets",
+    "\\src\\assets\\img",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\components\\home\\home.component.ts",
+  "SelectedNode": "\\src\\app\\components\\heroes\\heroes.component.ts",
   "PreviewInSolutionExplorer": false
 }

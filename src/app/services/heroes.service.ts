@@ -1,9 +1,10 @@
 
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class HeroesService {
-
+  private router: Router;
   private heroes: any[] = [
       {
         nombre: "Aquaman",
@@ -63,8 +64,20 @@ export class HeroesService {
     return this.heroes;
   }
 
-  getHeroeByIndex(idx:Number) {
-    let heroes = this.heroes;
-    let heroeIndex = heroes.filter(x => x.nombre == "");
+  getHeroeByIndex(idx:string) {
+    return this.heroes[idx];
+  }
+
+  buscarHeroes(termino: string) {
+    let heroesArr: any = [];
+    termino = termino.toLowerCase();
+    for (let heroe of this.heroes) {
+      let nombre = heroe.nombre.toLowerCase();
+      if (nombre.indexOf(termino) >= 0) {
+        heroesArr.push(heroe);
+      }
+    }
+    return heroesArr;
+    //return heroesArr;   
   }
 }
