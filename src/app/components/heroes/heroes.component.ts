@@ -15,6 +15,7 @@ export class HeroesComponent implements OnInit {
   apiResult: any = [];
   items: any = [];
   posts: any = [];
+  status: boolean = false;
 
   date: Date = new Date();
   likes: number = Math.floor(Math.random() * 100);
@@ -54,5 +55,26 @@ export class HeroesComponent implements OnInit {
 
   verHeroe(idx:Number) {
     this.router.navigate(['/heroe', idx]);
+  }
+
+  darLike(tipo: string, postId: number, userId: string) {//Simplificar
+    var vm = {
+      UserId: userId,
+      PostId: postId,
+      Tipo: null
+    }
+    if (tipo == "like") {
+      
+      vm.Tipo = 'like';
+      this._apiService.addLike(vm).subscribe();
+    }
+    else {
+      vm.Tipo = 'dislike';
+      this._apiService.addLike(vm).subscribe();
+
+    }
+    this._apiService.getPost().subscribe((data) => {
+      this.posts = data;
+    });
   }
 }

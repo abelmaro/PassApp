@@ -257,3 +257,11 @@ a.article:hover {
   background-color: #8469C2;
   color: white;
 }
+
+.like{
+    color: green;
+}
+
+.dislike{
+    color: red;
+}

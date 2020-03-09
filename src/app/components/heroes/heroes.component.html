@@ -22,54 +22,88 @@
   </div>
 </div>-->
 <!--#endregion-->
-<div class="d-flex flex-wrap justify-content-center animeted fadeIn fast" style="margin-top:10%">
-  <div class="card text-white mb-3 postCard text-black-50" *ngFor="let post of posts">
-    <div class="card-header text-sm-left d-flex justify-content-between backLor">
-      <img class="userImg"> {{post.autor}}
-      <div>
-        <div class="iconText d-flex justify-content-around">
-          <i class="fa fa-thumbs-up"></i>
-          <i class="fa fa-thumbs-down"></i>
+  <div class="d-flex flex-wrap justify-content-center animeted fadeIn fast" style="margin-top:10%">
+      <div class="card text-white mb-3 postCard text-black-50">
+        <div class="card-header text-sm-left d-flex justify-content-between backLor">
+          <div>
+          </div>
         </div>
-        <div>
-          <span>{{likes * post.id}}</span>
-          <span>|</span>
-          <span>{{likes}}</span>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{post.postName}}</h5>
+        <div class="card-body">
+          <h5 class="card-title">Agregar post</h5>
 
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-    <div class="card-footer bg-transparent">
-      <div class="m-1 bg-primary rounded-circle" *ngFor="let comment of post.comentarios">
-        <div class="card">
-          <div class="card-body row d-flex float-left text-left">
-            <div class="col-md-12">
-              <div class="bg-danger fotoUsuario"></div>
-              <div class="text-muted ml-3">{{comment.comentario}}</div>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+        <div class="card-footer bg-transparent">
+          <div class="m-1 bg-primary rounded-circle">
+            <div class="card">
+              <div class="card-body row d-flex float-left text-left">
+                <div class="col-md-12">
+                  <div class="bg-danger fotoUsuario"></div>
+                  <div class="text-muted ml-3"></div>
+                </div>
+              </div>
             </div>
-            <div class="col-md-12 ml-3">
-              <small>Comment by {{comment.user.userName}} at {{comment.fechaComentario}}</small>
+          </div>
+          <div class="m-1 bg-primary">
+            <div class="card">
+              <div class="card-body d-flex align-items-center row">
+                <div class="form-group mx-sm-3 mb-2 d-flex  w-100">
+                  <input type="text" class="form-control" placeholder="Agregar Post" #commentData>
+                  <!--<button class="btn buttonColor" (click)="addComment(commentData.value,post.id)">></button>-->
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="m-1 bg-primary">
-        <div class="card">
-          <div class="card-body d-flex align-items-center row">
+
+    <div class="card text-white mb-3 postCard text-black-50" *ngFor="let post of posts">
+      <div class="card-header text-sm-left d-flex justify-content-between backLor">
+        <img class="userImg"> {{post.autor}}
+        <div>
+          <div class="iconText d-flex justify-content-around">
+            <i (click)="darLike('like',post.id, post.userId)" class="fa fa-thumbs-up"></i>
+            <i (click)="darLike('dislike',post.id,post.userId)" class="fa fa-thumbs-down"></i>
+          </div>
+          <div>
+            <span>{{post.cantidadLike}}</span>
+            <span>|</span>
+            <span>{{post.cantidadDislike}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{post.postName}}</h5>
+
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <div class="card-footer bg-transparent">
+        <div class="m-1 bg-primary rounded-circle" *ngFor="let comment of post.comentarios">
+          <div class="card">
+            <div class="card-body row d-flex float-left text-left">
+              <div class="col-md-12">
+                <div class="bg-danger fotoUsuario"></div>
+                <div class="text-muted ml-3">{{comment.comentario}}</div>
+              </div>
+              <div class="col-md-12 ml-3">
+                <small>Comment by {{comment.user.userName}} at {{comment.fechaComentario}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="m-1 bg-primary">
+          <div class="card">
+            <div class="card-body d-flex align-items-center row">
               <div class="form-group mx-sm-3 mb-2 d-flex  w-100">
-                <input type="text" class="form-control" id="comment" placeholder="Agregar comentario" #commentData>
+                <input type="text" class="form-control" placeholder="Agregar comentario" #commentData>
                 <button class="btn buttonColor" (click)="addComment(commentData.value,post.id)">></button>
               </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 <!--<input class="col-md-11" type="text" name="comentario" placeholder="Agregar comentario" #commentData>
 <button class="btn buttonColor" (click)="addComment(commentData.value,post.id)">+</button>-->
