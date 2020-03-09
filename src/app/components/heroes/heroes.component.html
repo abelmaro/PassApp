@@ -1,72 +1,75 @@
+<!--#region comentarios-->
+<!--<div class="card" *ngFor="let heroe of heroes; let i = index">
+  <img src="{{heroe.img}}" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{heroe.nombre}}</h5>
+    <p class="card-text">{{heroe.bio}}</p>
+    <p class="card-text"><small class="text-muted">{{heroe.aparicion}}</small></p>
+    <button class="btn btn-primary btn-block" (click)="verHeroe(i)">
+      Ver más
+    </button>
+    <a [routerLink]="['/heroe',i]" class="btn btn-primary btn-block">Ver más</a>
+  </div>
+</div>-->
+<!--<div class="card" *ngFor="let article of items[0]; let i = index">
+  <img src="{{article.urlToImage}}" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{article.title}}</h5>
+    <p class="card-text">{{article.author}}</p>
+    <p class="card-text"><small class="text-muted">{{article.publishedAt | date: 'dd/MM/yyyy'}}</small></p>
 
-  <!--#region comentarios-->
-  <!--<div class="card" *ngFor="let heroe of heroes; let i = index">
-    <img src="{{heroe.img}}" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">{{heroe.nombre}}</h5>
-      <p class="card-text">{{heroe.bio}}</p>
-      <p class="card-text"><small class="text-muted">{{heroe.aparicion}}</small></p>
-      <button class="btn btn-primary btn-block" (click)="verHeroe(i)">
-        Ver más
-      </button>
-      <a [routerLink]="['/heroe',i]" class="btn btn-primary btn-block">Ver más</a>
-    </div>
-  </div>-->
-  <!--<div class="card" *ngFor="let article of items[0]; let i = index">
-    <img src="{{article.urlToImage}}" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">{{article.title}}</h5>
-      <p class="card-text">{{article.author}}</p>
-      <p class="card-text"><small class="text-muted">{{article.publishedAt | date: 'dd/MM/yyyy'}}</small></p>
-
-      <a href="{{article.url}}" class="btn btn-primary btn-block">Ver más</a>
-    </div>
-  </div>-->
-  <!--#endregion-->
-  <div class="d-flex flex-wrap justify-content-center animeted fadeIn fast mt-5">
-    <div class="card text-white mb-3 postCard text-black-50" *ngFor="let post of posts">
-      <div class="card-header text-sm-left d-flex justify-content-between backLor">
-        <img class="userImg"> {{post.autor}}
+    <a href="{{article.url}}" class="btn btn-primary btn-block">Ver más</a>
+  </div>
+</div>-->
+<!--#endregion-->
+<div class="d-flex flex-wrap justify-content-center animeted fadeIn fast" style="margin-top:10%">
+  <div class="card text-white mb-3 postCard text-black-50" *ngFor="let post of posts">
+    <div class="card-header text-sm-left d-flex justify-content-between backLor">
+      <img class="userImg"> {{post.autor}}
+      <div>
+        <div class="iconText d-flex justify-content-around">
+          <i class="fa fa-thumbs-up"></i>
+          <i class="fa fa-thumbs-down"></i>
+        </div>
         <div>
-          <div class="iconText d-flex justify-content-around">
-            <i class="fa fa-thumbs-up"></i>
-            <i class="fa fa-thumbs-down"></i>
-          </div>
-          <div>
-            <span>21</span>
-            <span>|</span>
-            <span>76</span>
-          </div>
+          <span>{{likes * post.id}}</span>
+          <span>|</span>
+          <span>{{likes}}</span>
         </div>
       </div>
-      <div class="card-body">
-        <h5 class="card-title">{{post.postName}}</h5>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{post.postName}}</h5>
 
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-footer bg-transparent">
-        <div class="m-1 bg-primary rounded-circle" *ngFor="let comment of post.comentarios">
-          <div class="card">
-            <div class="card-body row d-flex float-left text-left">
-              <div class="col-md-12">
-                <div class="bg-danger fotoUsuario"></div>
-                <div class="text-muted ml-3">{{comment.comentario}}</div>
-              </div>
-              <div class="col-md-12 ml-3">
-                <small>Comment by {{comment.user.userName}} at {{comment.fechaComentario}}</small>
-              </div>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <div class="card-footer bg-transparent">
+      <div class="m-1 bg-primary rounded-circle" *ngFor="let comment of post.comentarios">
+        <div class="card">
+          <div class="card-body row d-flex float-left text-left">
+            <div class="col-md-12">
+              <div class="bg-danger fotoUsuario"></div>
+              <div class="text-muted ml-3">{{comment.comentario}}</div>
+            </div>
+            <div class="col-md-12 ml-3">
+              <small>Comment by {{comment.user.userName}} at {{comment.fechaComentario}}</small>
             </div>
           </div>
         </div>
-        <div class="m-1 bg-primary">
-          <div class="card">
-            <div class="card-body d-flex float-left align-items-center row m-3">
-              <input class="col-md-11" type="text" name="comentario" placeholder="Agregar comentario" #commentData>
-              <button class="col-md-1" (click)="addComment(commentData.value,post.id)">+</button>
-            </div>
+      </div>
+      <div class="m-1 bg-primary">
+        <div class="card">
+          <div class="card-body d-flex align-items-center row">
+              <div class="form-group mx-sm-3 mb-2 d-flex  w-100">
+                <input type="text" class="form-control" id="comment" placeholder="Agregar comentario" #commentData>
+                <button class="btn buttonColor" (click)="addComment(commentData.value,post.id)">></button>
+              </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
+<!--<input class="col-md-11" type="text" name="comentario" placeholder="Agregar comentario" #commentData>
+<button class="btn buttonColor" (click)="addComment(commentData.value,post.id)">+</button>-->

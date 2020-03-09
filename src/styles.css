@@ -32,11 +32,25 @@ body {
 
 /*#region MENUSEARCH.CSS*/
 .menuSearch {
-  background-color: #7386D5 !important;
+  background-color: #6340B2 !important;
+  position: fixed;
+  z-index: 10;
+  width:100%;
+  top: 0;
 }
-/*#endregion*/
 
-/*#region MENU.CSS*/ 
+.iconList {
+  width: 10%;
+  font-size: 25px;
+  justify-content: space-around;
+}
+
+#navbarSupportedContent{
+    margin-left: 10%;
+}
+
+/*#endregion*/
+/*#region MENU.CSS*/
 /*================================================================================*/
 /*MENU.CSS*/
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
@@ -237,4 +251,9 @@ a.article:hover {
 
 .card {
   border: 1px solid #8469C2 !important;
+}
+
+.buttonColor {
+  background-color: #8469C2;
+  color: white;
 }

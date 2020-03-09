@@ -17,6 +17,8 @@ export class HeroesComponent implements OnInit {
   posts: any = [];
 
   date: Date = new Date();
+  likes: number = Math.floor(Math.random() * 100);
+
   constructor(private _heroesService: HeroesService,
               private router: Router,
               private _apiService: ApiService,
