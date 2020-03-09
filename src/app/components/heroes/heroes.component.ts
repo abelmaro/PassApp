@@ -28,6 +28,7 @@ export class HeroesComponent implements OnInit {
     //this.apiResult = this._apiService.getNews();
     //this.apiResult.forEach(element => console.log(this.items.push(element.articles)));
 
+
     this.items = this._apiService.getPost().subscribe((data) => {
       this.posts = data;
       this.changeDetector.detectChanges();
@@ -42,7 +43,11 @@ export class HeroesComponent implements OnInit {
       Comentario: comentario,
       PostID: id
     };
-    return this._apiService.AddComment(viewModel).subscribe((data) => {});
+    return this._apiService.AddComment(viewModel).subscribe((data) => {
+      this.items = this._apiService.getPost().subscribe((data) => {
+        this.posts = data;
+      });
+    });
   }
 
   verHeroe(idx:Number) {
