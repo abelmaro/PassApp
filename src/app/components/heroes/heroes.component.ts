@@ -15,6 +15,8 @@ export class HeroesComponent implements OnInit {
   apiResult: any = [];
   items: any = [];
   posts: any = [];
+  comments: any = [];
+  inputComentario: any = "";
   status: boolean = false;
 
   date: Date = new Date();
@@ -26,19 +28,18 @@ export class HeroesComponent implements OnInit {
               private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    //this.heroes = this._heroesService.getHeroes();
-    //this.pokemones = this._heroesService.getpokemones();
-    //this.apiResult = this._apiService.getNews();
-    //this.apiResult.forEach(element => console.log(this.items.push(element.articles)));
-
 
     this.items = this._apiService.getPost().subscribe((data) => {
       this.posts = data;
-      this.changeDetector.detectChanges();
+      //this.changeDetector.detectChanges();
 
       console.log(data);
     });
-
+    
+     this.comments=  this._apiService.getComentarios().subscribe((data) => {
+        this.comments = data;
+       console.log(this.comments);
+      });
   }
 
   addComment(comentario: string, id: number) {
@@ -47,17 +48,19 @@ export class HeroesComponent implements OnInit {
       PostID: id
     };
     return this._apiService.AddComment(viewModel).subscribe((data) => {
-      this.items = this._apiService.getPost().subscribe((data) => {
-        this.posts = data;
-      });
+      this.comments.push(data);
+      var input = <HTMLInputElement>document.getElementById("input_" + id + "");
+      input.value = "";
     });
   }
+
+  
 
   verHeroe(idx:Number) {
     this.router.navigate(['/heroe', idx]);
   }
 
-  darLike(tipo: string, postId: number, userId: string) {//Simplificar
+  darLike(tipo: string, postId: number, userId: string) {
     var vm = {
       UserId: userId,
       PostId: postId,
@@ -73,8 +76,8 @@ export class HeroesComponent implements OnInit {
       this._apiService.addLike(vm).subscribe();
 
     }
-    this._apiService.getPost().subscribe((data) => {
-      this.posts = data;
-    });
+    //this._apiService.getPost().subscribe((data) => {
+    //  this.posts = data;
+    //});
   }
 }

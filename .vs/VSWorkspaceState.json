@@ -5,12 +5,9 @@
     "\\src\\app",
     "\\src\\app\\components",
     "\\src\\app\\components\\heroes",
-    "\\src\\app\\components\\home",
-    "\\src\\app\\components\\shared",
-    "\\src\\app\\components\\shared\\navbar",
     "\\src\\app\\services",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\components\\heroes\\heroes.component.html",
+  "SelectedNode": "\\src\\app\\components\\heroes\\heroes.component.ts",
   "PreviewInSolutionExplorer": false
 }

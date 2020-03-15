@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+/*#region ESTILOS GENERALES*/
 body {
   margin: 0 0 1% 15%;
 }
@@ -28,7 +29,9 @@ body {
 
 .fadeIn {
   animation-name: fadeIn;
+
 }
+/*#endregion*/
 
 /*#region MENUSEARCH.CSS*/
 .menuSearch {
@@ -50,6 +53,7 @@ body {
 }
 
 /*#endregion*/
+
 /*#region MENU.CSS*/
 /*================================================================================*/
 /*MENU.CSS*/
@@ -240,6 +244,8 @@ a.article:hover {
 }
 /*====================================================================*/
 /*#endregion*/
+
+/*#region POST.CSS*/
 .backLor {
   background-color: #8858F6;
   font-size: 25px;
@@ -265,3 +271,10 @@ a.article:hover {
 .dislike{
     color: red;
 }
+/*#endregion POST.CSS*/
+
+/*#region HOME.CSS*/
+.mtCustom{
+    margin-top: 10%;
+}
+/*#endregion*/

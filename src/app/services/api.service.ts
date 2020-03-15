@@ -29,5 +29,13 @@ export class ApiService {
     }
     return this.httpClient.post("https://localhost:44395/Comment/AddComment", JSON.stringify(vm), httpOptions);
   }
+
+  public getComentarios() {
+    return this.httpClient.get(this.apiUrl + "Comment/GetComments");
+  }
+
+  public GetComentariosByPostId() {
+    return this.httpClient.get(this.apiUrl + "Comment/GetComentariosByPostId");
+  }
 }
 
