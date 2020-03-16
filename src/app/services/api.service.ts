@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/abstract_emitter';
+import { ArrayType } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,10 @@ export class ApiService {
 
   public DeleteComment(id: number) {
     return this.httpClient.delete("https://localhost:5001/api/Comment/DeleteComment?id=" + id);
+  }
+
+  public DeleteComments(ids: Array<number>) {
+    return this.httpClient.post("https://localhost:5001/api/Comment/DeleteComments", ids);
   }
 }
 

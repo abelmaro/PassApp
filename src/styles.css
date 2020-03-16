@@ -273,12 +273,25 @@ a.article:hover {
 }
 
 .fa-trash:hover {
-  transition: .2s;
+  transition: .3s;
   color: #6c757d;
 }
-/*#endregion POST.CSS*/
-/*#region HOME.CSS*/
-.mtCustom {
+
+.fa-trash {
+  font-size: 25px;
+  color: #6340b25c;
+}
+
+.selected {
+  border: 2px dotted red;
+}
+
+.row {
+  margin: 0;
+}
+  /*#endregion POST.CSS*/
+  /*#region HOME.CSS*/
+  .mtCustom {
   margin-top: 10%;
 }
 /*#endregion*/

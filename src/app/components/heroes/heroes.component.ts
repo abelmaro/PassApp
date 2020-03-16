@@ -21,6 +21,7 @@ export class HeroesComponent implements OnInit {
   currentUser: string = "4ed9f1f1-96c8-498e-b3dd-c8d57b4115c1";
   date: Date = new Date();
   likes: number = Math.floor(Math.random() * 100);
+  selecteds: any = [];
 
   constructor(private _heroesService: HeroesService,
     private router: Router,
@@ -83,7 +84,7 @@ export class HeroesComponent implements OnInit {
   }
 
   modalBorrarComentario(id: number) {
-    console.log(id);
+      console.log(id);
     Swal.fire({
       title: 'Está seguro?',
       text: "No podrá deshacer esta acción!",
@@ -100,11 +101,38 @@ export class HeroesComponent implements OnInit {
     })
   }
 
-  deleteComment(id) {
+  deleteComment(id: number) {
     this._apiService.DeleteComment(id).subscribe((data) => {
-      let index = this.comments.indexOf(id);
+      let index = this.comments.findIndex(x => x.id == id);
       this.comments.splice(index, 1);
-      this.comments = this.comments;
+    });
+  }
+
+  select(id: number) {
+    let input = document.getElementById("comment_" + id);
+    let boolInput = input.classList.contains('selected');
+    if (boolInput) {
+      input.classList.remove("selected");
+      let index = this.selecteds.indexOf(id);
+      this.selecteds.splice(index, 1);
+    }
+    else {
+      input.classList.add("selected");
+      this.selecteds.push(id);
+      
+    }
+    console.log(this.selecteds);
+
+  }
+  deleteComments() {
+    this._apiService.DeleteComments(this.selecteds).subscribe((data) => {
+      let comments = this.comments;
+      this.selecteds.forEach(function (id) {
+        let index = comments.findIndex(x => x.id == id);
+        comments.splice(index, 1);
+
+      });
+      this.selecteds = [];
     });
   }
 }

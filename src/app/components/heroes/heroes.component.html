@@ -28,6 +28,7 @@
           <div>
           </div>
         </div>-->
+          <button *ngIf="selecteds.length > 1" style="position:fixed;width:150px;height:150px;z-index:900" (click)="deleteComments()">MANDAR</button>
         <div class="card-body">
           <h5 class="card-title">Agregar post</h5>
 
@@ -79,12 +80,12 @@
       </div>
       <div class="card-footer bg-transparent">
         <div class="m-1 bg-primary rounded-circle" *ngFor="let comment of comments">
-          <div class="card" *ngIf="post.id == comment.postID">
-            <div class="card-body row d-flex float-left text-left">
+          <div class="card" *ngIf="post.id == comment.postID" (dblclick)="select(comment.id)">
+            <div class="card-body row d-flex float-left text-left" id="comment_{{comment.id}}">
               <div class="col-md-12 d-flex justify-content-between">
                 <!--<div class="bg-danger fotoUsuario"></div>-->
                 <div class="text-muted ml-3">{{comment.comentario}}</div>
-                <i *ngIf="comment.usuario == currentUser" class="fa fa-trash" (click)="modalBorrarComentario(comment.id)"></i>
+                <i *ngIf="comment.usuario == currentUser && selecteds.length < 2" class="fa fa-trash" (click)="modalBorrarComentario(comment.id)"></i>
               </div>
               <div class="col-md-12 ml-3">
                 <small>Comment by <!--{{comment.user.userName}}--> at {{comment.fechaComentario}}</small>
