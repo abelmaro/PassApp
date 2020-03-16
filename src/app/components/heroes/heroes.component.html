@@ -81,9 +81,10 @@
         <div class="m-1 bg-primary rounded-circle" *ngFor="let comment of comments">
           <div class="card" *ngIf="post.id == comment.postID">
             <div class="card-body row d-flex float-left text-left">
-              <div class="col-md-12">
-                <div class="bg-danger fotoUsuario"></div>
+              <div class="col-md-12 d-flex justify-content-between">
+                <!--<div class="bg-danger fotoUsuario"></div>-->
                 <div class="text-muted ml-3">{{comment.comentario}}</div>
+                <i *ngIf="comment.usuario == currentUser" class="fa fa-trash" (click)="modalBorrarComentario(comment.id)"></i>
               </div>
               <div class="col-md-12 ml-3">
                 <small>Comment by <!--{{comment.user.userName}}--> at {{comment.fechaComentario}}</small>

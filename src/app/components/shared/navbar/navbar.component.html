@@ -5,7 +5,16 @@
       <button [routerLink]="['search',buscarTexto.value]" class="btn btn-success my-2 my-sm-0" type="button">Buscar</button>
     </form>
     <div class="iconList d-flex">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-user" type="button" data-toggle="collapse" data-target="#collapseExample"></i>
+      <div class="collapse" id="collapseExample" style="position:fixed;box-sizing:border-box">
+        <div class="card bg-success">
+          <ul>
+            <li>Mi perfil</li>
+            <li>Mis amigos</li>
+            <li>Salir</li>
+          </ul>
+        </div>
+      </div>
       <i class="fa fa-bell"></i>
       <i class="fa fa-sign-out"></i>
     </div>

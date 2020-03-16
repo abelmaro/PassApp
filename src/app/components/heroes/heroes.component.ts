@@ -18,14 +18,14 @@ export class HeroesComponent implements OnInit {
   comments: any = [];
   inputComentario: any = "";
   status: boolean = false;
-
+  currentUser: string = "4ed9f1f1-96c8-498e-b3dd-c8d57b4115c1";
   date: Date = new Date();
   likes: number = Math.floor(Math.random() * 100);
 
   constructor(private _heroesService: HeroesService,
-              private router: Router,
-              private _apiService: ApiService,
-              private changeDetector: ChangeDetectorRef) { }
+    private router: Router,
+    private _apiService: ApiService,
+    private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -35,11 +35,11 @@ export class HeroesComponent implements OnInit {
 
       console.log(data);
     });
-    
-     this.comments=  this._apiService.getComentarios().subscribe((data) => {
-        this.comments = data;
-       console.log(this.comments);
-      });
+
+    this.comments = this._apiService.getComentarios().subscribe((data) => {
+      this.comments = data;
+      console.log(this.comments);
+    });
   }
 
   addComment(comentario: string, id: number) {
@@ -54,9 +54,9 @@ export class HeroesComponent implements OnInit {
     });
   }
 
-  
 
-  verHeroe(idx:Number) {
+
+  verHeroe(idx: Number) {
     this.router.navigate(['/heroe', idx]);
   }
 
@@ -67,7 +67,7 @@ export class HeroesComponent implements OnInit {
       Tipo: null
     }
     if (tipo == "like") {
-      
+
       vm.Tipo = 'like';
       this._apiService.addLike(vm).subscribe();
     }
@@ -76,8 +76,35 @@ export class HeroesComponent implements OnInit {
       this._apiService.addLike(vm).subscribe();
 
     }
+
     //this._apiService.getPost().subscribe((data) => {
     //  this.posts = data;
     //});
+  }
+
+  modalBorrarComentario(id: number) {
+    console.log(id);
+    Swal.fire({
+      title: 'Está seguro?',
+      text: "No podrá deshacer esta acción!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar!',
+      cancelButtonText: 'Cancelar!'
+    }).then((result) => {
+      if (result.value) {
+        this.deleteComment(id);
+      }
+    })
+  }
+
+  deleteComment(id) {
+    this._apiService.DeleteComment(id).subscribe((data) => {
+      let index = this.comments.indexOf(id);
+      this.comments.splice(index, 1);
+      this.comments = this.comments;
+    });
   }
 }

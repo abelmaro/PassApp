@@ -271,10 +271,14 @@ a.article:hover {
 .dislike{
     color: red;
 }
-/*#endregion POST.CSS*/
 
+.fa-trash:hover {
+  transition: .2s;
+  color: #6c757d;
+}
+/*#endregion POST.CSS*/
 /*#region HOME.CSS*/
-.mtCustom{
-    margin-top: 10%;
+.mtCustom {
+  margin-top: 10%;
 }
 /*#endregion*/
